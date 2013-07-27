@@ -12,10 +12,12 @@ Split-Path $MyInvocation.MyCommand.Definition | Push-Location
 . .\blink1\blink1-batterymonitor.ps1
 . .\aliases.ps1
 
-Initialize-TfsPowerTools
-
 # Import/Install Modules
 ImportOrPsGet-Module PsGet
+ImportOrPsGet-Module Posh-Git
 ImportOrPsGet-Module Psake
+
+Initialize-PoshGit
+Initialize-TfsPowerTools
 
 Pop-Location

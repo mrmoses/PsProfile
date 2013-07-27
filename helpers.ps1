@@ -44,3 +44,24 @@ function Initialize-TfsPowerTools() {
         Write-Host "TFS 2012 Power Tools Initialized" -ForegroundColor Green
     }   
 }
+
+function Initialize-PoshGit() {
+    # Set up a simple prompt, adding the git prompt parts inside git repos
+    function global:prompt {
+        $realLASTEXITCODE = $LASTEXITCODE
+
+        # Reset color, which can be messed up by Enable-GitColors
+        $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
+
+        Write-Host($pwd.ProviderPath) -nonewline
+
+        Write-VcsStatus
+
+        $global:LASTEXITCODE = $realLASTEXITCODE
+        return "> "
+    }
+
+    $global:GitPromptSettings.EnableFileStatus = $false
+
+    Enable-GitColors
+}
