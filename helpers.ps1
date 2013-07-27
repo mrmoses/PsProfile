@@ -65,3 +65,14 @@ function Initialize-PoshGit() {
 
     Enable-GitColors
 }
+
+function Reinitialize-Profile() {
+    $profilePaths = $PROFILE.CurrentUserAllHosts, $PROFILE.CurrentUserCurrentHost
+    foreach($profilePath in $profilePaths) {
+        if (Test-Path $profilePath) {
+            $fileName = Split-Path $profilePath -Leaf
+            Write-Host "Reinitializing $fileName..." -ForegroundColor Yellow
+            . $profilePath
+        }
+    }
+}

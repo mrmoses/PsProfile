@@ -1,5 +1,3 @@
-Write-Host "Initializing Profile..." -ForegroundColor Green
-
 cd $Env:USERPROFILE
 
 Split-Path $MyInvocation.MyCommand.Definition | Push-Location
