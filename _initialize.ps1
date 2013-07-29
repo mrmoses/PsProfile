@@ -16,6 +16,6 @@ ImportOrPsGet-Module Posh-Git
 ImportOrPsGet-Module Psake
 
 Initialize-PoshGit
-Initialize-TfsPowerTools
+. Initialize-TfsPowerTools
 
 Pop-Location
