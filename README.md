@@ -4,6 +4,12 @@
 
 PsProfile is a set of scripts that initialize a global PowerShell profile on my machines. It uses [PsGet](http://psget.net/) to install missing modules. It will even install [PsGet](http://psget.net/) if it hasn't already been install on the machine.
 
+The following modules are imported/installed:
+* [PsGet](http://psget.net/)
+* [Posh-Git](https://github.com/dahlbyk/posh-git)
+* [Psake](https://github.com/psake/psake)
+
+If you have the Team Foundation Server Power Tools installed, PsProfile will attempt the load the PS Snapin for it. 
 
 ## Installation
 
