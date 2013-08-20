@@ -76,3 +76,34 @@ function Reinitialize-Profile() {
         }
     }
 }
+
+function Test-Url() {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        [string[]]$url
+    )
+
+    Process {
+        foreach($u in $url) {
+            try {
+                Invoke-WebRequest $u |                     
+                    select StatusCode, StatusDescription |
+                    Add-Member -MemberType NoteProperty -Name URL -Value $u -PassThru
+                    
+            } catch {
+                $ex = $_.Exception
+                if ($ex.Status -eq [System.Net.WebExceptionStatus]::ProtocolError) {            
+                     $obj = New-Object -TypeName psobject |
+                        Add-Member -MemberType NoteProperty -Name StatusCode -Value ($ex.Response.StatusCode -as [int]) -PassThru |
+                        Add-Member -MemberType NoteProperty -Name StatusDescription -Value $ex.Response.StatusDescription -PassThru |
+                        Add-Member -MemberType NoteProperty -Name URL -Value $u -PassThru
+                        
+                        Write-Output $obj
+                } else {
+                    Write-Host $ex.Message -ForegroundColor Red
+                }
+            }            
+        }
+    }
+}
