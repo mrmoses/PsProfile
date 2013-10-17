@@ -35,12 +35,12 @@ function ImportOrPsGet-Module($name) {
 function Initialize-TfsPowerTools() {
     $tfsPowerToolsPath = $Env:TFSPowerToolDir
     if ($tfsPowerToolsPath -eq $null) {
-        $tfsPowerToolsPath = "C:\Program Files (x86)\Microsoft Team Foundation Server 2012 Power Tools"
+        $tfsPowerToolsPath = "C:\Program Files (x86)\Microsoft Team Foundation Server 2013 Power Tools"
     }
 
     if (Test-Path $tfsPowerToolsPath) {
         Add-PSSnapin Microsoft.TeamFoundation.PowerShell
-        Write-Host "TFS 2012 Power Tools Initialized" -ForegroundColor Green
+        Write-Host "TFS 2013 Power Tools Initialized" -ForegroundColor Green
     }
 }
 
