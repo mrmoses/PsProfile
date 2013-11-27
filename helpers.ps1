@@ -106,3 +106,7 @@ function Test-Url() {
         }
     }
 }
+
+function Invoke-Tika() {
+    java -jar c:\tools\tika-app-1.4.jar $args
+}
